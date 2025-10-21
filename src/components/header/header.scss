@@ -1,0 +1,78 @@
+.menu-box-top {
+    // background-color: red;
+    background-color: #f8f8f8;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+
+    .logo-container {
+        width: 60%;
+        position: relative;
+        height: 2rem; // Give the container a height for the fill image to occupy
+        // background-color: red;
+
+        .logo {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .menu-item-right {
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem
+    }
+}
+
+.menu-icon {
+    width: 2rem;
+    color: var(--foreground);
+}
+
+.menu-box-bottom{
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+
+
+    .search-box{
+        width: 80%;
+        border: 1px solid var(--foreground);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+
+        input{
+            height: 100%;
+            font-size: 1.2rem;
+            width: 90%;
+            border: none;
+            outline: none;
+        }
+
+
+        svg{
+            width: 1.4rem;
+            height: auto;
+            color: var(--foreground);
+        }
+    }
+
+    .cart-container{
+        width: 3rem;
+        background-color: rgb(244, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
+        padding: 0.4rem 0rem;
+    }
+    
+    #cart-btn{
+        width: 1.6rem;
+        color: var(--color-white);
+    }
+}
