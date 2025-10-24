@@ -88,3 +88,66 @@
         }
     }
 }
+
+.tertiary-marquee-slide-wrapper{
+    display: flex;
+    align-items: center;
+    min-width: 50%;
+    margin-top: 0.3rem;
+    // background-color: red;
+
+    .tertiary-marquee-slide{
+        flex-shrink: 0;
+        position: relative;
+        background-color: blue;
+        aspect-ratio: 1.9 / 1;
+        width: calc(100% - 1.3rem);
+
+        img{
+            object-fit: cover;
+        }
+    }
+
+    span{
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+    }
+}
+    
+.tertiary-marquee2-slide-wrapper{
+    display: flex;
+    align-items: center;
+    min-width: 60%;
+    margin-top: 0.3rem;
+    // background-color: red;
+
+    .tertiary-marquee2-slide{
+        flex-shrink: 0;
+        position: relative;
+        background-color: blue;
+        aspect-ratio: 1.9 / 1;
+        width: calc(100% - 1.3rem);
+
+        img{
+            object-fit: cover;
+        }
+    }
+
+    span{
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+    }
+}
+
+footer{
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0rem;
+    background-color: black;
+
+    .footer-image-wrapper{
+        position: relative;
+        width: 100%;
+        aspect-ratio: 5 / 2.5;
+    }
+}
