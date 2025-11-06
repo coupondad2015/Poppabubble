@@ -31,3 +31,16 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.hide-scrollbar {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    height: 0; /* hide horizontal scrollbar in WebKit */
+    width: 0;  /* hide vertical scrollbar in WebKit */
+    background: transparent;
+  }
+}

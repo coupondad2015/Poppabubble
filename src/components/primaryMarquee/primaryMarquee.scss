@@ -1,0 +1,90 @@
+/* Hero section */
+#primary-marquee{
+    position: relative;
+    width: 100%;
+}
+
+.welcome-container{
+    background-color: var(--foreground);
+    color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    font-family: var(--font-bai-jamjuree);
+
+    span{
+        font-size: 1.5rem;
+    }
+
+    p{
+        display: block;
+        font-family: var(--font-noto-sans);
+        font-size: 1rem;
+        font-weight: 300;
+        margin-top: 1rem;
+        text-align: center;
+    }
+}
+
+.logo-wrapper{
+    width: 100%;
+    padding: 0rem 1rem;
+    
+    .logo{
+        position: relative;
+        aspect-ratio: 5/1;
+
+    }
+}
+
+.slider-wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: var(--foreground);
+    padding: 0.3rem 0rem;
+    position: relative;
+    
+    .slider-track {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.3rem;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory; // snap on touch/scroll
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      scroll-snap-align: start; // align slide start to track start
+    }
+}
+
+.slider-controllers{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    transform: translateY(-50%);
+
+    .slider-button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        
+        svg{
+            width: 2rem;
+            height: auto;
+            color: rgb(255, 255, 255);
+        }
+    }
+}
+
+.yellow-border{
+    height: 0.3rem;
+    width: 100%;
+    background-color: #FFD700;
+    margin-top: 0.3rem;
+}

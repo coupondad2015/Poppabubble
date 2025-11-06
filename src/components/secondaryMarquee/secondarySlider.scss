@@ -1,0 +1,15 @@
+.secondary-slider-wrapper{
+    margin-top: 0.4rem;
+    
+    .secondary-slider-track{
+        display: flex;
+        overflow-x: auto;
+        gap: 0.5rem;
+        
+        .secondary-slide{
+            flex-shrink: 0;
+            border: 0.2rem solid var(--foreground);
+            background-color: red;
+        }
+    }
+}
