@@ -1,15 +1,18 @@
 .secondary-slider-wrapper{
     margin-top: 0.4rem;
     
-    .secondary-slider-track{
-        display: flex;
-        overflow-x: auto;
-        gap: 0.5rem;
-        
-        .secondary-slide{
-            flex-shrink: 0;
-            border: 0.2rem solid var(--foreground);
-            background-color: red;
-        }
+    .secondary-slider-track {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      // Optional: snap nicely when user scrolls manually
+      // scroll-snap-type: x mandatory;
+    }
+
+    .secondary-slide {
+      flex: 0 0 auto;
+      // scroll-snap-align: start;
     }
 }

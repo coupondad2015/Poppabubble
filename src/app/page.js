@@ -1,7 +1,7 @@
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import Hero from '@/components/primaryMarquee/PrimaryMarquee'
-import SecondarySlider from '@/components/secondaryMarquee/SecondarySlider'
+import SecondaryMarquee from '@/components/secondaryMarquee/SecondaryMarquee'
 import TertiaryMarquee from '@/components/tertiaryMarquee/TertiaryMarquee'
 import React from 'react'
 
@@ -10,7 +10,7 @@ const page = () => {
     <div>
       <Header />
       <Hero />
-      <SecondarySlider />
+      <SecondaryMarquee />
       <TertiaryMarquee />
       <Footer />
     </div>

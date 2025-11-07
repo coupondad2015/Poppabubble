@@ -1,8 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import "./secondarySlider.scss";
+import { scrollTrackToSlide, useTrackAlign } from "@/utils/scrollTrack";
 
-const SecondarySlider = () => {
+const SecondaryMarquee = () => {
+    const [current, setCurrent] = useState(0);
+    const trackRef = useRef(null);
+    const slideRefs = useRef([]);
+
     const secondarySliderImages = [
         "/images/GearAndMerch1.webp",
         "/images/GearAndMerch2.webp",
@@ -48,16 +55,42 @@ const SecondarySlider = () => {
         "/images/68.webp",
         "/images/69.webp",
     ];
+
+    // Auto-advance every 2s
+    useEffect(() => {
+        if (secondarySliderImages.length === 0) return;
+        const id = setInterval(() => {
+            setCurrent((prev) => (prev + 1) % secondarySliderImages.length);
+        }, 3000);
+        return () => clearInterval(id);
+    }, [secondarySliderImages.length]);
+
+    useTrackAlign(trackRef, slideRefs, current, { behavior: "smooth", reAlignOnResize: true });
+
+    // Re-align on resize
+    useEffect(() => {
+        const onResize = () => {
+            const track = trackRef.current;
+            const el = slideRefs.current[current];
+            if (track && el) track.scrollTo({ left: el.offsetLeft });
+        };
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+    }, [current]);
+
     return (
         <div className="secondary-slider-wrapper">
-            <div className="secondary-slider-track hide-scrollbar">
+            <div ref={trackRef} className="secondary-slider-track hide-scrollbar">
                 {secondarySliderImages.map((image, index) => (
-                    <div key={index} className="secondary-slide">
+                    <div
+                        key={index}
+                        className="secondary-slide"
+                        ref={(el) => (slideRefs.current[index] = el)}
+                    >
                         <Image
                             src={image}
                             alt={`Gallery image ${index + 1}`}
                             quality={80}
-                            priority={false}
                             loading="lazy"
                             height={1080}
                             width={1920}
@@ -67,6 +100,11 @@ const SecondarySlider = () => {
                                 objectFit: "contain",
                                 display: "block",
                             }}
+                            onLoadingComplete={() => {
+                                if (index === 0) {
+                                    scrollTrackToSlide(trackRef, slideRefs, 0, "auto");
+                                }
+                            }}
                         />
                     </div>
                 ))}
@@ -75,4 +113,4 @@ const SecondarySlider = () => {
     );
 };
 
-export default SecondarySlider;
+export default SecondaryMarquee;
