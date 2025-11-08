@@ -1,12 +1,26 @@
 footer{
     width: 100%;
     margin-top: 0.5rem;
-    padding: 0.3rem 0rem;
-    background-color: black;
+    padding-top: 0.3rem;
+    // background-color: rgb(253, 143, 143);
 
     .footer-image-wrapper{
         position: relative;
         width: 100%;
-        aspect-ratio: 5 / 2.5;
+        // aspect-ratio: 5 / 2.5;
+    }
+}
+
+.agency-credit {
+    text-align: center;
+    background-color: var(--foreground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1rem;
+
+    p{
+        font-size: 1rem;
+        color: var(--background);
     }
 }
