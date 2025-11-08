@@ -9,14 +9,14 @@ const Header = () => {
         <div className="logo-container">
           <Image
             className="logo"
-            src="/images/poppabubble logo upscale.png"
+            src="/images/logo.png"
             alt="logo"
-            fill={true}
-            // width={96}
-            // height={96}
+            // fill={true}
+            width={96}
+            height={96}
             quality={100}
             priority={true}
-            objectFit="contain"
+            style={{height: '2.2rem', width: 'auto', objectFit: 'contain'}}
           />
 
           {/* <img className="logo" src="/images/poppabubble logo upscale.png" alt="logo" /> */}

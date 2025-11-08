@@ -6,10 +6,6 @@ import "./secondarySlider.scss";
 import { scrollTrackToSlide, useTrackAlign } from "@/utils/scrollTrack";
 
 const SecondaryMarquee = () => {
-    const [current, setCurrent] = useState(0);
-    const trackRef = useRef(null);
-    const slideRefs = useRef([]);
-
     const secondarySliderImages = [
         "/images/GearAndMerch1.webp",
         "/images/GearAndMerch2.webp",
@@ -56,16 +52,21 @@ const SecondaryMarquee = () => {
         "/images/69.webp",
     ];
 
+    const [current, setCurrent] = useState(secondarySliderImages.length - 1);
+    const trackRef = useRef(null);
+    const slideRefs = useRef([]);
+
+
     // Auto-advance every 2s
     useEffect(() => {
         if (secondarySliderImages.length === 0) return;
         const id = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % secondarySliderImages.length);
+            setCurrent((prev) => (prev - 1 + secondarySliderImages.length) % secondarySliderImages.length);
         }, 3000);
         return () => clearInterval(id);
     }, [secondarySliderImages.length]);
 
-    useTrackAlign(trackRef, slideRefs, current, { behavior: "smooth", reAlignOnResize: true });
+    useTrackAlign(trackRef, slideRefs, current, { scrollDirection: "right", behavior: "smooth", reAlignOnResize: true, padding: 4});
 
     // Re-align on resize
     useEffect(() => {
@@ -80,7 +81,10 @@ const SecondaryMarquee = () => {
 
     return (
         <div className="secondary-slider-wrapper">
-            <div ref={trackRef} className="secondary-slider-track hide-scrollbar">
+            <div 
+            ref={trackRef}
+            style={{scrollBehavior: "auto"}}
+            className="secondary-slider-track hide-scrollbar">
                 {secondarySliderImages.map((image, index) => (
                     <div
                         key={index}
