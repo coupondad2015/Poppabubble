@@ -3,12 +3,21 @@ footer{
     margin-top: 0.5rem;
     padding-top: 0.3rem;
     // background-color: rgb(253, 143, 143);
+}
 
-    .footer-image-wrapper{
-        position: relative;
-        width: 100%;
-        // aspect-ratio: 5 / 2.5;
+.secondary-slider-wrapper{
+    margin-top: 0.4rem;
+    
+    .secondary-slider-track{
+        display: flex;
+        overflow-x: auto;
+        gap: 0.5rem;
+        
     }
+}
+
+.footer-marquee-slide{
+    flex: 0 0 auto;
 }
 
 .agency-credit {
