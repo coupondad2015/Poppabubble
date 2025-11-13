@@ -25,7 +25,7 @@ const Footer = () => {
     const ctx = gsap.context(() => {
       gsap.set(el, { opacity: 1 });
       // 2s cycle: 0.5s fade out -> swap -> 0.5s fade in -> 1s hold
-      gsap.timeline({ repeat: -1, repeatDelay: 1 })
+      gsap.timeline({ repeat: -1, repeatDelay: 20 })
         .to(el, { opacity: 0, duration: 0.5, ease: 'power1.out' })
         .add(() => setCurrentIndex(prev => (prev + 1) % footerImages.length))
         .to(el, { opacity: 1, duration: 0.5, ease: 'power1.in' });
