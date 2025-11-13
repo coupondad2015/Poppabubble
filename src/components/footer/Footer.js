@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import './footer.scss';
 import Link from 'next/link';
+import { gsap } from 'gsap';
 
 const Footer = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const containerRef = useRef(null);
 
   const footerImages = [
     "/images/Footer/01.webp",
@@ -15,28 +16,34 @@ const Footer = () => {
     "/images/Footer/03.webp",
     "/images/Footer/04.webp",
     "/images/Footer/05.webp",
-  ]
+  ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true); // start fade out
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % footerImages.length);
-        setIsTransitioning(false); // fade in next
-      }, 500); // fade out duration (match CSS transition)
-    }, 20000);
-    return () => clearInterval(interval);
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(el, { opacity: 1 });
+      // 2s cycle: 0.5s fade out -> swap -> 0.5s fade in -> 1s hold
+      gsap.timeline({ repeat: -1, repeatDelay: 1 })
+        .to(el, { opacity: 0, duration: 0.5, ease: 'power1.out' })
+        .add(() => setCurrentIndex(prev => (prev + 1) % footerImages.length))
+        .to(el, { opacity: 1, duration: 0.5, ease: 'power1.in' });
+    }, el);
+
+    return () => ctx.revert();
   }, [footerImages.length]);
 
   return (
     <footer>
       <div className="footer-slider-wrapper">
-        <div className={`footer-image-container ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
+        <div ref={containerRef} className="footer-image-container">
           <Image
             src={footerImages[currentIndex]}
             alt={`Poppabubble store ${currentIndex + 1}`}
-            fill={true}
-            priority={currentIndex === 0? true : false}
+            fill
+            priority={currentIndex === 0}
+            sizes="100vw"
           />
         </div>
       </div>
@@ -45,7 +52,7 @@ const Footer = () => {
         <p>© Poppabubble 2025 – Powered by <Link href="https://brandtec.netlify.app" target='_blank'>BRANDTec™</Link></p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

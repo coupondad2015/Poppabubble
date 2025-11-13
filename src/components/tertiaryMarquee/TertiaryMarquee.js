@@ -96,7 +96,7 @@ const TertiaryMarquee = () => {
                     objectFit: "contain",
                   }}
 
-                  onLoadingComplete={() => {
+                  onLoad={() => {
                     if (index === 0) {
                       scrollTrackToSlide(trackRefM1, slideRefsM1, 0, "auto");
                     }
@@ -147,7 +147,7 @@ const TertiaryMarquee = () => {
                     display: "block",
                     objectFit: "contain",
                   }}
-                  onLoadingComplete={() => {
+                  onLoad={() => {
                     if (index === tertiarySliderImages.length - 1) {
                       scrollTrackToSlide(
                         trackRefM2,

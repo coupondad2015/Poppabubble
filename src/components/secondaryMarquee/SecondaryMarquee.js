@@ -93,7 +93,7 @@ const SecondaryMarquee = () => {
                                 objectFit: "contain",
                                 display: "block",
                             }}
-                            onLoadingComplete={() => {
+                            onLoad={() => {
                                 if (index === 0) {
                                     scrollTrackToSlide(trackRef, slideRefs, 0, "auto");
                                 }
