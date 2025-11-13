@@ -10,11 +10,11 @@ const Footer = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const footerImages = [
-    "/images/Footer/01.jpg",
-    "/images/Footer/02.png",
-    "/images/Footer/03.png",
-    "/images/Footer/04.png",
-    "/images/Footer/05.png",
+    "/images/Footer/01.webp",
+    "/images/Footer/02.webp",
+    "/images/Footer/03.webp",
+    "/images/Footer/04.webp",
+    "/images/Footer/05.webp",
   ]
 
   useEffect(() => {
@@ -35,12 +35,8 @@ const Footer = () => {
           <Image
             src={footerImages[currentIndex]}
             alt={`Poppabubble store ${currentIndex + 1}`}
-            height={1080}
-            width={1920}
-            quality={85}
-            priority={currentIndex === 0}
-            loading={currentIndex === 0 ? undefined : "lazy"}
-            style={{ objectFit: "cover", height: '200px', width: '100%' }}
+            fill={true}
+            priority={currentIndex === 0? true : false}
           />
         </div>
       </div>
