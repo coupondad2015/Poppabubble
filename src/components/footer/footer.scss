@@ -33,3 +33,24 @@ footer{
         color: var(--background);
     }
 }
+
+.footer-slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.footer-image-container {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.footer-image-container.fade-out {
+  opacity: 0;
+}
+
+.footer-image-container.fade-in {
+  opacity: 1;
+}

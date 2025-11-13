@@ -13,7 +13,8 @@ const TertiaryMarquee = () => {
   const trackRefM2 = useRef(null);
   const slideRefsM2 = useRef([]);
 
-  const tertiarySliderImages = [
+  // Use ref to store images to prevent effect recreation on re-renders
+  const tertiarySliderImages = useRef([
     {
       src: "/images/Tertiary Marquee/Exclusive Products.png",
       alt: "Exclusive Products",
@@ -44,10 +45,10 @@ const TertiaryMarquee = () => {
       title: "Gear and Merchandise",
       content: "The newest thing for the latest bling",
     },
-  ];
+  ]).current; // .current makes it stable
 
+  // Set interval only once on mount (empty dependency array)
   useEffect(() => {
-    if (tertiarySliderImages.length === 0) return;
     const intervalId = setInterval(() => {
       setCurrentImageIndexM1((prevIndex) => (prevIndex + 1) % tertiarySliderImages.length);
     }, 4000);
@@ -60,28 +61,15 @@ const TertiaryMarquee = () => {
       clearInterval(intervalId);
       clearInterval(intervalId2);
     };
-  }, [tertiarySliderImages.length]);
-
+  }, []); // Empty array = run only once on mount
 
   useEffect(()=>{
     trackRefM2.current.scrollTo({ left: trackRefM2.current.scrollWidth, behavior: "auto" });
   },[]);
+  
   useTrackAlign(trackRefM1, slideRefsM1, currentImageIndexM1, { behavior: "smooth", reAlignOnResize: true, padding: -4 });
   useTrackAlign(trackRefM2, slideRefsM2, currentImageIndexM2, { scrollDirection: "right", behavior: "smooth", reAlignOnResize: true, padding: -20});
 
-  // Re-align on resize
-  useEffect(() => {
-    const onResize = () => {
-      const track = trackRefM1.current;
-      const el = slideRefsM1.current[currentImageIndexM1];
-      const track2 = trackRefM2.current;
-      const el2 = slideRefsM2.current[currentImageIndexM2];
-      if (track && el) track.scrollTo({ left: el.offsetLeft });
-      if (track2 && el2) track2.scrollTo({ left: el2.offsetLeft });
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [currentImageIndexM1, currentImageIndexM2]);
 
   return (
     <>
@@ -160,7 +148,6 @@ const TertiaryMarquee = () => {
                     objectFit: "contain",
                   }}
                   onLoadingComplete={() => {
-                    // align to the last slide instead of index 0
                     if (index === tertiarySliderImages.length - 1) {
                       scrollTrackToSlide(
                         trackRefM2,

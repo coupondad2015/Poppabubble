@@ -68,17 +68,6 @@ const SecondaryMarquee = () => {
 
     useTrackAlign(trackRef, slideRefs, current, { scrollDirection: "right", behavior: "smooth", reAlignOnResize: true, padding: 4});
 
-    // Re-align on resize
-    useEffect(() => {
-        const onResize = () => {
-            const track = trackRef.current;
-            const el = slideRefs.current[current];
-            if (track && el) track.scrollTo({ left: el.offsetLeft });
-        };
-        window.addEventListener("resize", onResize);
-        return () => window.removeEventListener("resize", onResize);
-    }, [current]);
-
     return (
         <div className="secondary-slider-wrapper">
             <div 
