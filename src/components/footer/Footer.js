@@ -11,8 +11,8 @@ const Footer = () => {
   const containerRef = useRef(null);
 
   const footerImages = [
-    "/images/Footer/01.webp",
     "/images/Footer/02.webp",
+    "/images/Footer/01.webp",
     "/images/Footer/03.webp",
     "/images/Footer/04.webp",
     "/images/Footer/05.webp",
